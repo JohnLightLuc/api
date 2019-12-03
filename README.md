@@ -106,8 +106,9 @@ Gestion global de d'autorisation
       #...
       
      class ExampleViewset(viewsets.ModelViewSet):
-           permission_classes = [HasAPIKey|IsAuthenticated|ReadOnly] 
+           permission_classes = [IsAuthenticated|ReadOnly] 
            permission_classes = [HasAPIKey]
+           permission_classes = [HasAPIKey | IsAuthenticated]
            #....
            
 Autorisations personnalisées
@@ -118,7 +119,7 @@ Autorisations personnalisées
           # Check permissions for write request
           
         
-      # classe d'autorisation vérifiant l'adresse IP et refuse la demande si l'adresse IP a été mise sur liste noire.
+      # autorisation vérifiant l'adresse IP et refuse la demande si l'adresse IP a été mise sur liste noire.
       
       from rest_framework import permissions
 
