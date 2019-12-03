@@ -91,7 +91,7 @@ Gestion global de d'autorisation
               'rest_framework.permissions.AllowAny',          # Par défaut
               'rest_framework.permissions.IsAdminUser'     # Accessible seulementt aux admins (user.is_staff= True)
               'rest_framework.permissions.IsAuthenticatedOrReadOnly' 
-              'rest_framework.permissions.django.contrib.auth' # Autorisation des les models
+              'rest_framework.permissions.django.contrib.auth' # Autorisation des models
               'rest_framework.permissions.DjangoModelPermissions'
               #...
           ]
