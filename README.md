@@ -106,10 +106,31 @@ Gestion global de d'autorisation
       #...
       
      class ExampleViewset(viewsets.ModelViewSet):
-           permission_classes = [IsAuthenticated|ReadOnly] 
+           permission_classes = [IsAuthenticated] 
            permission_classes = [HasAPIKey]
            permission_classes = [HasAPIKey | IsAuthenticated]
            #....
+          
+          
+      # Autorisation en cas de non-authentification
+      from rest_framework import viewsets
+      from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
+      from rest_framework.response import Response
+
+       class ReadOnly(BasePermission):
+          def has_permission(self, request, view):
+              return request.method in SAFE_METHODS
+
+      class ExampleViewset(viewsets.ModelViewSet):
+          permission_classes = [IsAuthenticated|ReadOnly]
+          #.....
+
+         def get(self, request, format=None):
+              content = {
+                  'status': 'request was permitted'
+              }
+              return Response(content)
+
            
 Autorisations personnalisées
 
@@ -132,6 +153,8 @@ Autorisations personnalisées
               ip_addr = request.META['REMOTE_ADDR']
               blacklisted = Blacklist.objects.filter(ip_addr=ip_addr).exists()
               return not blacklisted
+              
+
 
   
  Source : https://www.django-rest-framework.org/api-guide/permissions/#setting-the-permission-policy
