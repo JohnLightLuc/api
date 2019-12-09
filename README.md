@@ -156,6 +156,7 @@ Autorisations personnalisées
               
 
 
+Api_crud : https://medium.com/quick-code/crud-app-using-vue-js-and-django-516edf4e4217
   
  Source : https://www.django-rest-framework.org/api-guide/permissions/#setting-the-permission-policy
       
