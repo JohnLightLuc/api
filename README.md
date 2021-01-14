@@ -155,7 +155,54 @@ Autorisations personnalisées
               return not blacklisted
               
 
+Autorisation with TokenAuthentication (https://www.youtube.com/watch?v=PFcnQbOfbUU)
 
+1- Setting.py
+
+    INSTALLED_APPS = [
+            ...
+           'rest_framework',
+          'rest_framework.authtoken',
+     ]
+
+    REST_FRAMEWORK = {
+          "DEFAULT_AUTHENTICATION_CLASSES":[
+              'rest_framework.authentication.TokenAuthentication',
+              #'rest_framework.authentication.SessionAuthentication', #Authenssion
+          ],
+
+          "DEFAULT_PERMISSION_CLASSES": [
+              ....
+          ]
+      }
+      
+2-urls.py
+
+
+     from rest_framework.authtoken import views
+     urlpatterns = [
+            ...
+            path('api-token-auth/', views.obtain_auth_token, name="api-token-auth"  ),
+
+      ]
+      
+      POST/ url: POST	http://127.0.0.1:8000/api-token-auth/  
+            username = "...."
+            password = "...."
+            
+      Response : 
+      {
+            "token": "7dde1509a1fa4b0341e3cfff3ad810d29242a979"
+      }
+         
+         
+      GET/ http://127.0.0.1:8000/api 
+      
+      Header:
+      Authorization: Token 7dde1509a1fa4b0341e3cfff3ad810d29242a979
+      
+     
+            
 Api_crud : https://medium.com/quick-code/crud-app-using-vue-js-and-django-516edf4e4217
   
  Source : https://www.django-rest-framework.org/api-guide/permissions/#setting-the-permission-policy
