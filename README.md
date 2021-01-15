@@ -1,5 +1,7 @@
-# api
-Base de python
+# Creat API
+
+### Base de python
+
 Installation
 
       pip install djangorestframework
@@ -13,9 +15,9 @@ Installation
           'rest_framework',
       ]
 
-## APPLICATION
+### APPLICATION
 
-### serializers.py
+->serializers.py
 
       from rest_framework import serializers
       from .models import *
@@ -31,7 +33,7 @@ Installation
               fields = '__all__'
               depth = 1
         
-### apiviews.py
+->apiviews.py
 
 
         from rest_framework import viewsets
@@ -45,7 +47,7 @@ Installation
             queryset = Nom_model2.objects.all()
             serializer_class = Nom_model2Serializer
 
- ### views.py
+->views.py
  
  
         from rest_framework.routers import DefaultRouter
@@ -61,12 +63,16 @@ Installation
 
         urlpatterns += router.urls
         
+  Api_crud : https://medium.com/quick-code/crud-app-using-vue-js-and-django-516edf4e4217
         
- # Autorisations et API-key
+        
+ # Autorisations, authentification et API-key
+ 
+ ## API-key
  
  1- Installation
  
- pip installer djangorestframework-api-key
+      pip installer djangorestframework-api-key
  
  2- settings.py
 
@@ -132,7 +138,7 @@ Gestion global de d'autorisation
               return Response(content)
 
            
-Autorisations personnalisées
+## Autorisations personnalisées
 
       if request.method in permissions.SAFE_METHODS:
           # Check permissions for read-only request
@@ -154,8 +160,9 @@ Autorisations personnalisées
               blacklisted = Blacklist.objects.filter(ip_addr=ip_addr).exists()
               return not blacklisted
               
+         
 
-Autorisation with TokenAuthentication (https://www.youtube.com/watch?v=PFcnQbOfbUU)
+## Autorisation with TokenAuthentication (https://www.youtube.com/watch?v=PFcnQbOfbUU)
 
 1- Setting.py
 
@@ -202,8 +209,16 @@ Autorisation with TokenAuthentication (https://www.youtube.com/watch?v=PFcnQbOfb
       Authorization: Token 7dde1509a1fa4b0341e3cfff3ad810d29242a979
       
      
+  ## Framework REST JWT Auth
+  
+      https://studygyaan.com/django/easy-rest-authorizationdjango-json-web-token
+      https://jpadilla.github.io/django-rest-framework-jwt/
+  
+  
+  
+  
             
-Api_crud : https://medium.com/quick-code/crud-app-using-vue-js-and-django-516edf4e4217
+
   
  Source : https://www.django-rest-framework.org/api-guide/permissions/#setting-the-permission-policy
       
